@@ -1,7 +1,4 @@
-import ReactDOM from "react-dom";
 import BaseComponent from "./components/TestComponent";
-import React from 'react';
-window.React = React;
 
 class App extends BaseComponent {
     constructor(props) {
@@ -12,8 +9,9 @@ class App extends BaseComponent {
         return (<div>
         	App
         	<BaseComponent />
+            {this.props.children}
         </div>);
     }
 }
 
-ReactDOM.render(<App />, document.getElementById("app"));
+export default App;

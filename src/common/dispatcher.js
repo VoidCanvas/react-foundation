@@ -5,4 +5,6 @@ class CustomDispatcher extends Dispatcher{
 		this.dispatch({type, data});
 	}
 }
-export default new CustomDispatcher();
+const dispatcher = new CustomDispatcher();
+window.dispatcher = dispatcher;
+export default dispatcher;

@@ -10,19 +10,21 @@ class BaseComponent extends React.Component {
     getStore() {
         return null;
     }
+    _listenerFunc(){
+        let newState = this.store.getState();
+        this.setState(newState);
+        console.log("Listened")
+    }
     componentWillMount(){
     	if(this.store){
-    		this._storeListener = this.store.on("change", ()=>{
-    			let newState = this.store.getState();
-    			this.setState(newState);
-    		});
+    		this._storeListener = this.store.on("change", this._listenerFunc.bind(this));
     		let newState = this.store.getState();
 	    	this.state = newState;
     	}
     }
     componentWillUnmount(){
     	if(this._storeListener){
-    		this._storeListener();
+            this.store.removeListener("change", this._listenerFunc);
     	}
     }
 
