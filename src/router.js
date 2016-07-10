@@ -33,7 +33,7 @@ class RouterConfig {
 	//with the second parameter as route name and it will listen and redirect to that
 	_handleActions(action){
 		switch(action.type){
-			case actions.REDIRECT_TO:
+			case this.actions.REDIRECT_TO:
 				appHistory.push(action.data);
 				break;
 		}
