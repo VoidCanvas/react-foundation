@@ -11,6 +11,9 @@
     "type": "git",
     "url": "git+https://github.com/VoidCanvas/react-foundation.git"
   },
+  "bugs": {
+    "url": "https://github.com/VoidCanvas/react-foundation/issues"
+  },
   "author": "Paul Shan <paul@voidcanvas.com>",
   "license": "ISC",
   "dependencies": {
