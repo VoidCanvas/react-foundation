@@ -1,4 +1,4 @@
-import BaseComponent from "../base/BaseComponent";
+import BaseComponent from "../../base/BaseComponent";
 
 class DummyComponent extends BaseComponent{
 

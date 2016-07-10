@@ -9,10 +9,10 @@ class TestStore extends BaseStore{
 	}
 
 	get actionMap(){
-		return {
-			increment: "increment",
-			decrement: "decrement"
-		}
+		let mapObject = {};
+		mapObject[this.actions.COUNTER_INCREMENT] = "increment";
+		mapObject[this.actions.COUNTER_DECREMENT] = "decrement";
+		return mapObject;
 	}
 
 	increment(data){

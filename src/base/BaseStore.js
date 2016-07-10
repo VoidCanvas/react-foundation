@@ -1,5 +1,6 @@
 import {EventEmitter} from "events";
 import dispatcher from '../common/dispatcher';
+import actions from "../common/Actions";
 
 class BaseStore extends EventEmitter{
 	constructor(){
@@ -8,6 +9,8 @@ class BaseStore extends EventEmitter{
 			name: "Base Store"
 		}
 		dispatcher.register(this._handleActions.bind(this));
+		this.dispatcher = dispatcher;
+        this.actions = actions;
 	}
 	_iAmChanged(){
 		this.emit("change");
@@ -22,7 +25,6 @@ class BaseStore extends EventEmitter{
 	}
 
 	_handleActions(action){
-		console.log("action",action)
 		let handlerFunctionName = this.actionMap[action.type];
 		if(handlerFunctionName && typeof this[handlerFunctionName] === "function"){
 			this[handlerFunctionName].apply(this, [action.data]);

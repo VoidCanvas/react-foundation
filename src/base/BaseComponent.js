@@ -1,35 +1,41 @@
 import React from 'react';
 import dispatcher from '../common/dispatcher';
+import actions from "../common/Actions";
 
 class BaseComponent extends React.Component {
     constructor(props) {
         super(props);
         this.store = this.getStore();
         this.dispatcher = dispatcher;
+        this.actions = actions;
+        this._listenerFunctionInstance = this._listenerFunc.bind(this);
     }
     getStore() {
         return null;
     }
     _listenerFunc(){
         let newState = this.store.getState();
+        console.log(`HERE ${this.name}`)
         this.setState(newState);
-        console.log("Listened")
+    }
+    componentDidMount(){
+        //one day I will do something here
     }
     componentWillMount(){
-    	if(this.store){
-    		this._storeListener = this.store.on("change", this._listenerFunc.bind(this));
-    		let newState = this.store.getState();
-	    	this.state = newState;
-    	}
+        if(this.store){
+            this.store.on("change", this._listenerFunctionInstance);
+            let newState = this.store.getState();
+            this.state = newState;
+        }
     }
     componentWillUnmount(){
-    	if(this._storeListener){
-            this.store.removeListener("change", this._listenerFunc);
-    	}
+        if(this.store){
+            this.store.removeListener("change", this._listenerFunctionInstance);
+        }
     }
 
     render(){
-    	return (<div>This is BaseComponent</div>)
+        return (<div>This is BaseComponent</div>)
     }
 }
 

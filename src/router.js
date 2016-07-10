@@ -14,7 +14,7 @@ let componentNames = [
 	"TestComponent",
 	"DummyComponent"
 ].forEach(c=>{
-	components[c] = require(`./components/${c}`).default;
+	components[c] = require(`./components/${c}/${c}`).default;
 });
 
 class RouterConfig {
@@ -27,6 +27,18 @@ class RouterConfig {
 			  </Router>
 		);
 	}
-}
 
-export default new RouterConfig();
+	//router also can handle actions
+	//for an example anyone trigger the REDIRECT_TO action
+	//with the second parameter as route name and it will listen and redirect to that
+	_handleActions(action){
+		switch(action.type){
+			case actions.REDIRECT_TO:
+				appHistory.push(action.data);
+				break;
+		}
+	}
+}
+const routerConfig = new RouterConfig();
+dispatcher.register(routerConfig._handleActions.bind(routerConfig));
+export default routerConfig;

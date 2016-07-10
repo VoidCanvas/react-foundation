@@ -1,16 +1,11 @@
-import BaseComponent from "./components/TestComponent";
+import BaseComponent from "./base/BaseComponent";
 
 class App extends BaseComponent {
     constructor(props) {
         super(props);
-        this.displayName = 'App';
     }
     render() {
-        return (<div>
-        	App
-        	<BaseComponent />
-            {this.props.children}
-        </div>);
+        return (<div>{this.props.children}</div>);
     }
 }
 
